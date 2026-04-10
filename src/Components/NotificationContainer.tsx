@@ -2,6 +2,7 @@ import { useSelector } from 'react-redux';
 import type { RootState } from '../store/store';
 import NotificationItem from './NotificationItem';
 import { Box } from '@mui/material';
+import type { Notification } from '../typeScript/interface/interface.global';
 
 const NotificationContainer = () => {
  const { notifications } = useSelector(
@@ -18,7 +19,7 @@ const NotificationContainer = () => {
         width: 320,
       }}
     >
-      {notifications.map((n) => (
+      {notifications.map((n: Notification) => (
         <NotificationItem
           key={n.id}
           id={n.id}

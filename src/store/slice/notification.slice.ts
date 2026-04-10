@@ -2,7 +2,7 @@ import { createSlice, type PayloadAction } from "@reduxjs/toolkit";
 import type {
   Notification,
   NotificationState,
-} from "../../typeScript/interface/interfce.global";
+} from "../../typeScript/interface/interface.global";
 
 const initialState: NotificationState = {
   notifications: [],
@@ -23,7 +23,7 @@ const notificationSlice = createSlice({
     },
     removeNotification: (state, action: PayloadAction<number>) => {
       state.notifications = state.notifications.filter(
-        (n) => n.id !== action.payload,
+        (n: Notification) => n.id !== action.payload,
       );
     },
     clearNotifications: (state) => {
