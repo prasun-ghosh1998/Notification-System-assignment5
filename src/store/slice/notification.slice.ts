@@ -1,9 +1,8 @@
 import { createSlice, type PayloadAction } from "@reduxjs/toolkit";
-import type { Notification, NotificationState } from "../../typeScript/interface/interfce.global";
-
-
-
-
+import type {
+  Notification,
+  NotificationState,
+} from "../../typeScript/interface/interfce.global";
 
 const initialState: NotificationState = {
   notifications: [],
@@ -15,7 +14,7 @@ const notificationSlice = createSlice({
   reducers: {
     addNotification: (
       state,
-      action: PayloadAction<Omit<Notification, "id">>
+      action: PayloadAction<Omit<Notification, "id">>,
     ) => {
       state.notifications.push({
         id: Date.now(),
@@ -24,7 +23,7 @@ const notificationSlice = createSlice({
     },
     removeNotification: (state, action: PayloadAction<number>) => {
       state.notifications = state.notifications.filter(
-        (n) => n.id !== action.payload
+        (n) => n.id !== action.payload,
       );
     },
     clearNotifications: (state) => {
@@ -33,10 +32,7 @@ const notificationSlice = createSlice({
   },
 });
 
-export const {
-  addNotification,
-  removeNotification,
-  clearNotifications,
-} = notificationSlice.actions;
+export const { addNotification, removeNotification, clearNotifications } =
+  notificationSlice.actions;
 
 export default notificationSlice.reducer;

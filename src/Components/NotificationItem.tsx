@@ -1,13 +1,13 @@
 import { useEffect } from "react";
-import { useDispatch } from "react-redux";
 import { removeNotification } from "../store/slice/notification.slice";
 
 import {
   Alert,
   IconButton,
-  Stack,
+  Box,
 } from "@mui/material";
 import CloseIcon from "@mui/icons-material/Close";
+import { useAppDispatch } from "../service/helper/redux";
 
 type Props = {
   id: number;
@@ -16,17 +16,18 @@ type Props = {
 };
 
 const NotificationItem = ({ id, message, type }: Props) => {
-  const dispatch = useDispatch();
+  const dispatch = useAppDispatch();
 
   useEffect(() => {
     const timer = setTimeout(() => {
       dispatch(removeNotification(id));
     }, 3000);
+
     return () => clearTimeout(timer);
   }, [id, dispatch]);
 
   return (
-    <Stack sx={{ width: "100%" }} spacing={1}>
+    <Box sx={{ width: "100%", mb: 1 }}>
       <Alert
         severity={type}
         variant="filled"
@@ -48,7 +49,7 @@ const NotificationItem = ({ id, message, type }: Props) => {
       >
         {message}
       </Alert>
-    </Stack>
+    </Box>
   );
 };
 
