@@ -1,16 +1,9 @@
 import { createSlice, type PayloadAction } from "@reduxjs/toolkit";
+import type { Notification, NotificationState } from "../../typeScript/interface/interfce.global";
 
-export type NotificationType = "success" | "error" | "info" | "warning";
 
-export interface Notification {
-  id: number;
-  message: string;
-  type: NotificationType;
-}
 
-interface NotificationState {
-  notifications: Notification[];
-}
+
 
 const initialState: NotificationState = {
   notifications: [],
@@ -25,7 +18,7 @@ const notificationSlice = createSlice({
       action: PayloadAction<Omit<Notification, "id">>
     ) => {
       state.notifications.push({
-        id: Date.now(), // ✅ no uuid
+        id: Date.now(),
         ...action.payload,
       });
     },

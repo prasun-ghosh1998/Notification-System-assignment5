@@ -1,21 +1,29 @@
-import { useDispatch } from "react-redux";
 import { addNotification } from "../store/slice/notification.slice";
-import { Button, Stack } from "@mui/material";
+import { Box, Button } from "@mui/material";
+import type { NotificationType } from "../typeScript/type/type";
+import { useAppDispatch } from "../service/helper/redux";
 
 const Navbar = () => {
-  const dispatch = useDispatch();
+  const dispatch = useAppDispatch();
 
-  const showNotification = (type: any) => {
+  const showNotification = (type: NotificationType) => {
     dispatch(
       addNotification({
         message: `This is ${type} notification`,
         type,
-      })
+      }),
     );
   };
 
   return (
-        <Stack direction="row" spacing={2} justifyContent="center" sx={{ p: 2 }}>
+    <Box
+      sx={{
+        display: "flex",
+        gap: 2,
+        justifyContent: "center",
+        p: 2,
+      }}
+    >
       <Button
         variant="contained"
         color="success"
@@ -47,7 +55,7 @@ const Navbar = () => {
       >
         Warning
       </Button>
-    </Stack>
+    </Box>
   );
 };
 
